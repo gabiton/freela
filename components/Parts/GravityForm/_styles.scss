@@ -1,0 +1,553 @@
+/** Based on https://gist.github.com/forgeandsmith/8048759 **/
+
+.gform_wrapper {
+  width: 100%;
+}
+
+.gform_heading,
+.gform_body,
+.gform_footer {
+  clear: both;
+  margin-bottom: 20px;
+}
+
+.gform_fields {
+  list-style: none;
+  margin: 0 -15px;
+  padding: 0;
+}
+
+.gfield {
+  clear: both;
+  overflow: auto;
+  padding: 0 15px 20px;
+  border: 0;
+  margin: 0;
+}
+
+.gfield--type-multiselect {
+  overflow: visible;
+}
+
+.ginput_container span {
+  margin-bottom: 10px;
+}
+
+.ginput_container input.large,
+.ginput_container select.large,
+.ginput_container textarea.large {
+  width: 100%;
+}
+
+.ginput_container input.medium,
+.ginput_container select.medium,
+.ginput_container textarea.medium {
+  width: 66%;
+}
+
+.ginput_container input.small,
+.ginput_container select.small,
+.ginput_container textarea.small {
+  width: 33%;
+}
+
+.ginput_container input,
+.ginput_container textarea {
+  margin: 2px;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 4px;
+  border: 1px solid hsl(0, 0%, 80%);
+  font-size: 16px;
+  padding: 8px;
+}
+
+label.gfield_label {
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.left_label label.gfield_label {
+  float: left;
+  width: 25%;
+}
+
+.right_label label.gfield_label {
+  float: right;
+  width: 25%;
+}
+
+.gfield_required {
+  padding-left: 5px;
+}
+
+.gfield_checkbox,
+.gfield_radio {
+  list-style: none;
+  padding: 0;
+}
+
+.gfield_checkbox input,
+.gfield_radio input {
+  width: auto;
+  margin-right: 10px;
+  position: relative;
+  top: -1px;
+}
+
+.gfield_radio input {
+  margin-left: 2px;
+}
+
+.gsection h2 {
+  border-bottom: 3px solid black;
+  padding-bottom: 15px;
+}
+
+.gf_progressbar_wrapper {
+  padding-bottom: 15px;
+}
+
+.gf_progressbar {
+  background: gray;
+}
+
+.gf_progressbar_percentage {
+  background: red;
+  padding: 5px 10px;
+  text-align: right;
+}
+
+.gfield_time_hour,
+.gfield_time_minute,
+.gfield_time_ampm {
+  display: inline;
+  display: inline-block;
+}
+
+.gfield_time_hour label,
+.gfield_time_minute label {
+  display: block;
+}
+
+.gfield_time_ampm {
+  vertical-align: top;
+}
+
+.gravityform__field--error input {
+  border: 1px solid red;
+}
+
+.validation_error {
+  font-size: 16px;
+  padding-bottom: 15px;
+}
+
+.gfield.gfield_error {
+  background: #ffdfe0;
+  margin-bottom: 15px;
+  padding-top: 15px;
+}
+
+.gfield.gfield_error label.gfield_label {
+  font-weight: bold;
+}
+
+.gfield .validation_message {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.gform_validation_container {
+  display: none;
+}
+
+.ginput_full {
+  display: block;
+}
+
+.ginput_full input,
+.ginput_full select,
+.ginput_full textarea {
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.ginput_full label {
+  display: block;
+}
+
+.ginput_left {
+  float: left;
+  padding-right: 10px;
+  width: 50%;
+}
+
+.ginput_left input,
+.ginput_left select,
+.ginput_left textarea {
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.ginput_left label {
+  display: block;
+}
+
+.ginput_right {
+  float: right;
+  width: 50%;
+}
+
+.ginput_right input,
+.ginput_right select,
+.ginput_right textarea {
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.ginput_right label {
+  display: block;
+}
+
+.ginput_right {
+  float: right;
+  width: 50%;
+}
+
+.gf_left_half {
+  clear: none;
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  width: 50%;
+}
+
+.gf_right_half {
+  clear: none;
+  float: right;
+  padding-bottom: 10px;
+  width: 50%;
+}
+
+.gf_left_third {
+  clear: none;
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  width: 33%;
+}
+
+.gf_middle_third {
+  clear: none;
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  width: 34%;
+}
+
+.gf_right_third {
+  clear: none;
+  float: right;
+  padding-bottom: 10px;
+  width: 33%;
+}
+
+.gf_first_quarter {
+  clear: none;
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  width: 25%;
+}
+
+.gf_second_quarter {
+  clear: none;
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  width: 25%;
+}
+
+.gf_third_quarter {
+  clear: none;
+  float: left;
+  padding-bottom: 10px;
+  width: 25%;
+}
+
+.gf_fourth_quarter {
+  clear: none;
+  float: right;
+  padding-bottom: 10px;
+  width: 25%;
+}
+
+@media screen and (max-width: 480px) {
+  .gf_left_half,
+  .gf_right_half,
+  .gf_left_third,
+  .gf_middle_third,
+  .gf_right_third,
+  .gf_first_quarter,
+  .gf_second_quarter,
+  .gf_third_quarter,
+  .gf_fourth_quarter {
+    width: 100%;
+  }
+}
+
+.gf_list_2col .gfield_checkbox,
+.gf_list_2col .gfield_radio {
+  float: left;
+  padding-bottom: 10px;
+  width: 50%;
+}
+
+.gf_list_3col .gfield_checkbox,
+.gf_list_3col .gfield_radio {
+  float: left;
+  padding-bottom: 10px;
+  width: 33%;
+}
+
+.gf_list_4col .gfield_checkbox,
+.gf_list_4col .gfield_radio {
+  float: left;
+  padding-bottom: 10px;
+  width: 25%;
+}
+.gf_list_5col .gfield_checkbox,
+.gf_list_5col .gfield_radio {
+  float: left;
+  padding-bottom: 10px;
+  width: 20%;
+}
+.gf_list_inline .gfield_checkbox,
+.gf_list_inline .gfield_radio {
+  display: inline-block;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+@media screen and (max-width: 480px) {
+  .gf_list_2col .gfield_checkbox,
+  .gf_list_3col .gfield_checkbox,
+  .gf_list_4col .gfield_checkbox,
+  .gf_list_5col .gfield_checkbox,
+  .gf_list_2col .gfield_radio,
+  .gf_list_3col .gfield_radio,
+  .gf_list_4col .gfield_radio,
+  .gf_list_5col .gfield_radio {
+    width: 100%;
+  }
+}
+
+.gravityform__button {
+  background-color: #0073aa;
+  border: 1px solid #0073aa;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 0;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.25s ease-in-out;
+  white-space: nowrap;
+}
+
+.react-select__control {
+  align-items: center;
+  cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-height: 38px;
+  outline: 0 !important;
+  position: relative;
+  transition: all 100ms;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 4px;
+  border: 1px solid hsl(0, 0%, 80%);
+}
+
+.react-select__control * {
+  box-sizing: border-box;
+}
+
+.react-select__control:hover {
+  border-color: hsl(0, 0%, 70%);
+}
+
+.react-select__control .react-select__value-container {
+  align-items: center;
+  display: grid;
+  flex: 1;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  padding: 2px 8px;
+}
+
+.react-select__control
+  .react-select__value-container.react-select__value-container--has-value {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.react-select__control
+  .react-select__value-container
+  .react-select__multi-value {
+  display: flex;
+  min-width: 0;
+  background-color: hsl(0, 0%, 90%);
+  border-radius: 2px;
+  margin: 2px;
+  box-sizing: border-box;
+}
+
+.react-select__control
+  .react-select__value-container
+  .react-select__multi-value
+  .react-select__multi-value__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 2px;
+  color: hsl(0, 0%, 20%);
+  font-size: 85%;
+  padding: 3px;
+  padding-left: 6px;
+  box-sizing: border-box;
+}
+
+.react-select__control
+  .react-select__value-container
+  .react-select__placeholder {
+  grid-area: 1/1/2/3;
+  color: hsl(0, 0%, 50%);
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.react-select__control
+  .react-select__value-container
+  .react-select__input-container {
+  visibility: visible;
+  flex: 1 1 auto;
+  display: inline-grid;
+  grid-area: 1/1/2/3;
+  grid-template-columns: 0 min-content;
+  margin: 2px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  color: hsl(0, 0%, 20%);
+}
+
+.react-select__control
+  .react-select__value-container
+  .react-select__input-container:after {
+  content: attr(data-value) "";
+  visibility: hidden;
+  white-space: pre;
+  grid-area: 1/2;
+  font: inherit;
+  min-width: 2px;
+  border: 0;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+}
+
+.react-select__control
+  .react-select__value-container
+  .react-select__input-container
+  .react-select__input {
+  color: inherit;
+  background: 0;
+  opacity: 1;
+  width: 100%;
+  grid-area: 1 / 2;
+  font: inherit;
+  min-width: 2px;
+  border: 0;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+}
+
+.react-select__control .react-select__indicators {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.react-select__control
+  .react-select__indicators
+  .react-select__indicator-separator {
+  align-self: stretch;
+  width: 1px;
+  background-color: hsl(0, 0%, 80%);
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+.react-select__control .react-select__indicators .react-select__indicator {
+  display: flex;
+  transition: color 150ms;
+  color: hsl(0, 0%, 80%);
+  padding: 8px;
+}
+
+.react-select__control .react-select__indicators svg {
+  display: inline-block;
+  line-height: 1;
+  stroke: hsl(0, 0%, 80%);
+  stroke-width: 0;
+}
+
+.react-select__control.react-select__control--is-focused {
+  box-shadow: 0 0 0 1px blue;
+}
+
+.react-select__menu {
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1);
+  margin-bottom: 8px;
+  margin-top: 8px;
+  box-sizing: border-box;
+}
+
+.react-select__menu .react-select__menu-list {
+  max-height: 300px;
+  overflow-y: auto;
+  position: relative;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  box-sizing: border-box;
+}
+
+.react-select__menu .react-select__menu-list .react-select__option {
+  cursor: default;
+  display: block;
+  font-size: inherit;
+  width: 100%;
+  user-select: none;
+  background-color: transparent;
+  color: inherit;
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+
+.react-select__menu .react-select__menu-list .react-select__option:hover,
+.react-select__menu
+  .react-select__menu-list
+  .react-select__option.select__option--is-focused {
+  background-color: #deebff;
+}

@@ -1,0 +1,65 @@
+.header {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 70px;
+    mix-blend-mode: difference;
+
+    .navbar-brand {
+        position: absolute;
+        top: 0px;
+        left: 80px;
+        @include responsive("mobile-h") {
+            left: 20px;
+        }
+        path {
+            fill: #fff;
+        }
+        svg{
+            display: block;
+        }
+    }
+    .navbar {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100%;
+        ul {
+            display: flex;
+            gap: 32px;
+            height: 100%;
+            align-items: center;
+            a {
+                color: $white;
+                font-size: 16px;
+                text-transform: uppercase;
+                font-weight: 600;
+            }
+        }
+    }
+
+    &__right {
+        position: absolute;
+        right: 80px;
+        top: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        a {
+            color: $white;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+    }
+}
+
+.scrolled {
+  .header {
+    background: rgba(#000, 0.5);
+    filter: drop-shadow(15px 15px 20px rgba(0, 0, 0, 0.1));
+  }
+}

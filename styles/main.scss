@@ -1,0 +1,52 @@
+@charset 'UTF-8';
+/*
+Theme Name: Palermo
+Text Domain: palermo
+*/
+
+// Configuration and helpers
+@import 
+  'abstracts/_variables',
+  'abstracts/_functions',
+  'abstracts/_mixins';
+
+// Base stuff
+@import 
+  'base/_typography',
+  'base/_base';
+
+// Components
+@import 
+  '../components/Parts/MobileMenu/styles',
+  '../components/Parts/Button/styles',
+  '../components/Parts/GravityForm/styles',
+  'components/_search',
+  'components/_socials',  
+  'components/_forms',
+  'components/_posts',
+  'components/_animations',
+  'components/_breadcrumb';
+
+// Layout 
+@import 
+  'layout/_project',
+  'layout/_header',
+  'layout/_footer';
+
+// Vendor
+@import 
+  'vendors/_fontawesome_brands',
+  'vendors/_fancybox',
+  'vendors/_swiper'
+;
+
+// Blocks & Heros
+@import 
+  '../components/Blocks/Testimonial/styles',
+  '../components/Blocks/Media/styles',
+  '../components/Blocks/ProjectDetail/styles',
+  '../components/Blocks/TextSectionBlock/styles',
+  '../components/Blocks/HomeHero/styles',
+  '../components/Blocks/Core/styles',
+  '../components/Blocks/AjaxSearchBlock/styles'
+;

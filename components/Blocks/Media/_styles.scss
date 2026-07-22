@@ -1,0 +1,20 @@
+.Media{
+    margin-bottom: 80px;
+    img, video{
+        border-radius: 24px;
+        display: block;
+    }
+    &:has(.col:nth-child(2)){
+        .container{
+            display: flex;
+            gap: 8px;
+        }
+        img, video{
+            aspect-ratio: 769/1000;
+            object-fit: cover;
+        }
+    }
+    &:has(+.Media){
+        margin-bottom: 8px;
+    }
+}

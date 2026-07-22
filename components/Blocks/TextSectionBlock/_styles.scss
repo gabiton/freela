@@ -1,0 +1,40 @@
+.TextSectionBlock{
+	margin-bottom: 280px;
+	h3{
+		color: $lgrey;
+		text-transform: uppercase;
+		font-size: 16px;
+		font-weight: 500;
+		position: relative;
+		padding: 20px 0;
+		margin-bottom: 160px;
+		&:after{
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 1px;
+			background: $dgrey;
+			content: '';
+		}
+	}
+	h2{
+		font-size: 72px;
+		line-height: 80/72;
+		font-weight: 500;
+		margin-bottom: 240px;
+		max-width: 887px;
+	}
+	&__text{
+		font-size: 42px;
+		line-height: (50/42);
+		color: $lgrey;
+		max-width: 1266px;
+		margin-left: auto;
+		text-align: right;
+		strong{
+			color: $white;
+			font-weight: 500;
+		}
+	}
+}

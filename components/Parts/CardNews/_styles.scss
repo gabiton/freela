@@ -1,0 +1,54 @@
+@mixin button() {
+  display: inline-block;
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: $default-font;
+  background: $secondary-color;
+  color: $primary-color;
+  // Change Kenmore Page:*/ color: $white;
+  padding: 0 30px;
+  transition: .5s ease;
+  border-radius: 0;
+
+  &:hover {
+    background-color: $third-color;
+    color: $white;
+  }
+
+  &--line {
+    border: 2px solid $third-color;
+    background: none;
+    color: $primary-color;
+    line-height: 36px;
+
+    &:hover {
+      background: $third-color;
+      color: $primary-color;
+    }
+  }
+}
+
+@mixin button--line() {
+  @include button();
+  color: $primary-color;
+  border: 2px solid $third-color;
+  height: 36px;
+  line-height: 36px;
+
+  &:hover {
+    background: $third-color;
+    color: $primary-color;
+  }
+}
+
+.button,
+.woocommerce #respond input#submit, 
+.woocommerce a.button, 
+.woocommerce button.button,
+.woocommerce input.button {
+  @include button();
+}

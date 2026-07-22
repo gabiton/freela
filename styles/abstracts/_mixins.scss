@@ -1,0 +1,162 @@
+/* Text Block Custom Style */
+
+@mixin text_block() {
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: $primary-color;
+		margin-bottom: 20px
+	}
+
+	h1 {
+		@include fontsizes(h1);
+	}
+
+	h2 {
+		@include fontsizes(h2);
+	}
+
+	h3 {
+		@include fontsizes(h3);
+	}
+
+	h4 {
+		@include fontsizes(h4);
+	}
+
+	h5 {
+		@include fontsizes(h5);
+	}
+
+	h6 {
+		@include fontsizes(h6);
+	}
+
+	p {
+		@include fontsizes(h5);
+		line-height: 1.4;
+		margin-bottom: 1em;
+	}
+
+	ul,
+	ol {
+		padding-left: 15px;
+		margin-bottom: 28px;
+		line-height: 1.6;
+	}
+
+	ul {
+		li {
+			list-style: disc;
+		}
+	}
+
+	a {
+		color: $primary-color;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	blockquote {
+		padding-left: 30px;
+		border-left: 3px solid $primary-color;
+
+		p {
+			@include fontsizes(h4);
+		}
+	}
+
+	img {
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		margin: 0 0 28px 0;
+	}
+
+	.alignleft {
+		float: left;
+		max-width: 50%;
+		margin-right: 30px;
+
+		@include responsive('mobile-h') {
+			max-width: 100%;
+		}
+	}
+
+	.aligncenter {
+		margin: 30px auto;
+		display: block;
+	}
+
+	.alignright {
+		float: right;
+		max-width: 50%;
+		margin-left: 30px;
+
+		@include responsive('mobile-h') {
+			max-width: 100%;
+		}
+	}
+}
+
+@mixin inputs() {
+	height: 40px;
+	line-height: 40px;
+	background: none;
+	border: 1px solid $third-color;
+	padding: 0 25px;
+	@include fontsizes(h6);
+	color: $primary-color;
+
+	&::placeholder {
+		color: #BBBFC1;
+	}
+}
+
+
+
+/* GRID mixins */
+$columns: 12;
+$gap: 40; // in pixels
+$sitewidth: map-get( $site-widths , 'max-width' );
+
+@mixin col( $cols, $colstablet: 0, $colsmobile: 12 ) {
+	width: 100%;
+	max-width: 100% / 12 * $cols ;
+	padding-left: $gap / 2 * 1px;
+	padding-right: $gap / 2 * 1px;
+
+	@if ( $colstablet > 0 ) {
+		@include responsive('tablet-h'){
+			max-width: 100% / 12 * $colstablet ;
+		}
+	}
+
+	@include responsive('mobile-h'){
+		max-width: 100% / 12 * $colsmobile ;
+		padding-right: $site-padding;
+		padding-left: $site-padding;
+	}
+}
+@mixin grid( $centeralign: false, $spacebetween: true ) {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: $gap / 2 * -1px;
+	margin-right: $gap / 2 * -1px;
+	@if ( $centeralign ) {
+		align-items: center;
+	}
+	@if ( $spacebetween ) {
+		justify-content: space-between;
+	}
+	@include responsive('mobile-h'){
+		margin-left: $site-padding * -1;
+		margin-right: $site-padding * -1;
+	}
+}

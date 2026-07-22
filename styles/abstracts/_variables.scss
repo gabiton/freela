@@ -1,0 +1,79 @@
+/// @type List
+$default-font: 'PP Neue Montreal', sans-serif !default;
+$secondary-font: 'PP Neue Montreal', sans-serif !default;
+
+/// @type Color
+$primary-color: #000 !default;
+$secondary-color: #fff !default;
+$third-color: #333F44 !default;
+$white:  #F9F8ED;
+$grey: #dddddd !default;
+$black: #000 !default;
+
+$lgrey: #878787;
+$dgrey: #282828;
+
+/// @type Length
+$site-widths: (
+  'full-width': 100%,
+  'max-width': 1680px,
+  //Site width without padding
+  ) !default;
+
+$site-padding: 80px;
+
+$font-sizes: (
+  'h1': 90px,
+  'h2': 70px,
+  'h3': 36px,
+  'h4': 26px,
+  'h5': 18px,
+  'h6': 16px,
+  'h7': 12px,
+  ) !default;
+
+$font-sizes-tablet: (
+  'h1': 70px,
+  'h2': 70px,
+  'h3': 28px,
+  'h4': 24px,
+  'h5': 16px,
+  'h6': 16px,
+  'h7': 12px,
+  ) !default;
+
+$font-sizes-mobile: (
+  'h1': 70px,
+  'h2': 40px,
+  'h3': 28px,
+  'h4': 24px,
+  'h5': 16px,
+  'h6': 16px,
+  'h7': 12px,
+  ) !default;
+
+$font-weights: (
+  'light': 300,
+  'regular': 400,
+  'medium': 500,
+  'semibold': 600,
+  'demi': 600,
+  'bold': 700,
+  ) !default;
+
+
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+
+$breakpoints: (
+  'mobile-v': 600px,
+  'mobile-h': 750px,
+  'tablet-v': 900px,
+  'tablet-h': 1050px,
+  'desktop-s': 1200px,
+  'desktop': 1440px,
+  ) !default;
+
+$transition-default: all 1s cubic-bezier(0.165, 0.840, 0.440, 1.000
+);
+$transition-default-delay: .2s;

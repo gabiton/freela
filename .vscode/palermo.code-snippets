@@ -1,0 +1,21 @@
+{
+	"map": {
+		"scope": "javascript",
+		"prefix": "map",
+		"body": [
+			"{${1:fieldname} != null &&",
+			"${1:fieldname}.map((item, key) => (",
+			"<>element</>",
+			"))}"
+		],
+		"description": "map"
+	},
+	"css_responsive": {
+		"prefix": "@responsive",
+		"body": [
+		  	"@include responsive('${1|mobile-s,mobile-v,mobile-h,tablet-v,tablet-h,desktop-s,desktop|}'){",
+		  	"}"
+		],
+		"description": "css_responsive"
+	},
+}
