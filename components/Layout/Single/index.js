@@ -9,8 +9,6 @@ import { useContext, useEffect } from "react";
 import TagManager from "react-gtm-module";
 import Lenis from 'lenis'
 
-import markerSDK from '@marker.io/browser';
-import { SingleHero } from "@/components/Parts/SingleHero";
 
 
 export const Single = (props) => {
