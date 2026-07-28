@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 import client from "client";
 import { Project } from "components/Layout/Project";
 import { cleanAndTransformBlocks } from "utils/core/cleanAndTransformBlocks";
+import { graphqlRevalidate } from "utils/core/graphqlSettings";
 
 export default Project;
 
@@ -32,7 +33,7 @@ export const getStaticProps = async (context) => {
       }`,
     },
     fetchOptions: {
-      next: { revalidate: context.preview ? 1 : 60 },
+      next: { revalidate: context.preview ? 1 : graphqlRevalidate },
     },
   };
 
@@ -101,7 +102,7 @@ export const getStaticProps = async (context) => {
       previewData: context.previewData || null,
       previewblocks: data.nodeByUri.preview,
     },
-    revalidate: context.preview ? 1 : 60,
+    revalidate: context.preview ? 1 : graphqlRevalidate,
   };
 };
 
