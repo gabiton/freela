@@ -1,0 +1,35 @@
+.SelectedWork{
+    margin-bottom: 280px;
+    
+    &__grid{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -40px;
+        gap: 8px;
+    }
+    &__item{
+        border-radius: 24px;
+        overflow: hidden;
+        display: block;
+        transition: .3s;
+        width: 100%;
+        &:hover{
+            opacity: .7;
+        }
+        
+        img, video{
+            width: 100%;
+            display: block;
+        }
+        &__content{
+            display: none;
+        }
+        &:nth-child(2):has(+.SelectedWork__item), &:nth-child(3){
+            width: calc(50% - 4px);
+            img{
+                aspect-ratio: 796/1000;
+            }
+        }
+        
+    }
+}

@@ -8,7 +8,7 @@ export const Media = ({ data }) => {
       <div className="container">
         {media.map((item, index) => (
           <div className="col" key={`media-${index}`}>
-            {item.image?.url && (
+            {!item.video?.url && item.image?.url && (
               <Image
                 src={item.image.url}
                 width={item.image.width}

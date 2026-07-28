@@ -11,15 +11,6 @@ export const Footer = (props) => {
   
   return (
     <footer>
-      <a className="footer-brand" href="https://bracketmedia.com/" rel="home">
-        <Logo />
-      </a>
-      <ul id="bracketfooternav" className="foonav">
-        {menuItems != null &&
-          menuItems.map((item, key) => (
-            <FooterMenuItem item={item}  key={key} />  
-          ))}
-      </ul>
     </footer>
   );
 };
