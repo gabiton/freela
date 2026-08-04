@@ -7,6 +7,10 @@
     height: 70px;
     mix-blend-mode: difference;
 
+    .container{
+        position: relative;
+    }
+
     .navbar-brand {
         position: absolute;
         top: 0px;

@@ -19,6 +19,21 @@ const parsePostData = (postData) => {
   }
 };
 
+const FOOTER_BLOCK_NAME = "acf/footer";
+
+const getFooterBlock = (blocks) =>
+  Array.isArray(blocks) ? blocks.find((block) => block.name === FOOTER_BLOCK_NAME) : null;
+
+const removeFooterBlock = (blocks) =>
+  Array.isArray(blocks) ? blocks.filter((block) => block.name !== FOOTER_BLOCK_NAME) : [];
+
+const getProjectFooterBlocks = (projectBlocks, footerSourceBlocks) => {
+  const blocks = Array.isArray(projectBlocks) ? projectBlocks : [];
+  const footerBlock = getFooterBlock(footerSourceBlocks) || getFooterBlock(blocks);
+
+  return footerBlock ? [footerBlock] : null;
+};
+
 export const getStaticProps = async (context) => {
   const uri = context.params?.slug
     ? `/project/${context.params.slug.join("/")}/`
@@ -63,6 +78,11 @@ export const getStaticProps = async (context) => {
             }
           }
         }
+        home: nodeByUri(uri: "/") {
+          ... on Page {
+            blocks
+          }
+        }
         siteMenus
         siteOptions
       }
@@ -79,10 +99,15 @@ export const getStaticProps = async (context) => {
     };
   }
 
-  const blocks =
+  const projectBlocks =
     context.preview && data.nodeByUri.preview?.node
-      ? cleanAndTransformBlocks(data.nodeByUri.preview.node.blocks || null)
-      : cleanAndTransformBlocks(data.nodeByUri.blocks || null);
+      ? data.nodeByUri.preview.node.blocks || null
+      : data.nodeByUri.blocks || null;
+
+  const blocks = cleanAndTransformBlocks(removeFooterBlock(projectBlocks));
+  const footerBlocks = cleanAndTransformBlocks(
+    getProjectFooterBlocks(projectBlocks, data.home?.blocks || null)
+  );
 
   return {
     props: {
@@ -95,6 +120,7 @@ export const getStaticProps = async (context) => {
       featuredImage: data.nodeByUri.featuredImage?.node?.sourceUrl || null,
       postData: parsePostData(data.nodeByUri.postData),
       blocks: blocks || null,
+      footerBlocks: footerBlocks || null,
       menus: data.siteMenus,
       options: data.siteOptions,
       queryContext,

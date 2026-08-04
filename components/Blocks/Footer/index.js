@@ -64,7 +64,6 @@ export const Footer = ({ data, style }) => {
           links: data.social_col_links,
         };
 
-  console.log(data);
 
   if (
     !hasGroupContent(contactCol) &&

@@ -6,6 +6,7 @@ import { MobileMenu } from "@/components/Parts/MobileMenu";
 export const Header = (props) => {
   return (
     <header className="header">
+      <div className="container">
       <Link className="navbar-brand" href="/">
         <Logo />
       </Link>      
@@ -14,6 +15,7 @@ export const Header = (props) => {
 
       <div className="header__right">
         <Link href="#">Contact</Link>
+      </div>
       </div>
       <MobileMenu />
     </header>
