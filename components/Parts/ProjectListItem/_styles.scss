@@ -12,6 +12,7 @@
 	}
 	a {
 		@include absolute;
+		z-index: 10;
 	}
 	h3 {
 		//color: $black;
