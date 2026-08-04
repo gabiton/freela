@@ -1,6 +1,7 @@
 import { BlockRenderer } from "components/BlockRenderer";
 import { Header } from "components/Layout/Header";
 import { Footer } from "components/Layout/Footer";
+import { NextProject } from "components/Parts/NextProject";
 
 import { PageWrapper } from "context/page";
 import Head from "next/head";
@@ -19,6 +20,7 @@ export const Project = (props) => {
 			TagManager.initialize(tagManagerArgs);
 		}
 	}, []);
+
 	console.log(props.postData)
 
 	return (
@@ -55,20 +57,7 @@ export const Project = (props) => {
 
 		<BlockRenderer pageBlocks={props.blocks} />
 
-		<div className="nextProject">
-			<div className="container">
-			<div className="label">next Project</div>
-			<h2>
-			MV AGUSTA
-			</h2>
-			<div className="year">
-				&copy;2026
-			</div>
-			<figure>
-				<img src="https://placeholders.io/400/300" />
-			</figure>
-			</div>
-		</div>
+		<NextProject project={props.postData?.related} />
 
 		<BlockRenderer pageBlocks={props.footerBlocks} />
 

@@ -1,10 +1,15 @@
 .projectHero{
     padding-top: 423px;
-    margin-bottom: 80px;
+    padding-bottom: 80px;
     .container{
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
+    }
+    &__link{
+        position: absolute;
+        inset: 0;
+        z-index: 2;
     }
     .tag, .cat{
         width: 100px;
@@ -34,8 +39,15 @@
 }
 .nextProject{
     position: relative;
-    margin-top: 340px;
-    margin-bottom: 400px;
+    padding-top: 240px;
+    padding-bottom: 200px;
+    margin-top: 140px;
+    margin-bottom: 200px;
+    --next-project-x: 0px;
+    --next-project-y: 0px;
+    a{
+        @include absolute;
+    }
     .container{
         display: flex;
         justify-content: space-between;
@@ -49,6 +61,7 @@
         color: $lgrey;
         flex: 1;
         white-space: nowrap;
+        padding-bottom: 20px;
     }
     h2{
         width: 100%;
@@ -62,14 +75,41 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) translate(var(--next-project-x), calc(var(--next-project-y) * .4));
+        clip-path: inset(0 100% 0 0);
+        transition:
+            transform .6s cubic-bezier(.16, 1.35, .35, 1),
+            clip-path .55s cubic-bezier(.76, 0, .24, 1);
+        will-change: transform, clip-path;
         mix-blend-mode: difference;
+
+        &.is-visible{
+            clip-path: inset(0 0 0 0);
+        }
+
+        &.is-leaving{
+            clip-path: inset(0 0 0 100%);
+        }
+
+        &.is-idle{
+            transition:
+                transform .65s cubic-bezier(.16, 1.35, .35, 1),
+                clip-path 0s;
+        }
+
         img, video{
             aspect-ratio: 246/308;
             border-radius: 24px;
             display: block;
             object-fit: cover;
             max-width: 246px;
+        }
+    }
+    &.is-curtain-leaving{
+        figure{
+            transition:
+                transform 1.2s cubic-bezier(.16, 1, .3, 1),
+                clip-path .55s cubic-bezier(.76, 0, .24, 1);
         }
     }
 }

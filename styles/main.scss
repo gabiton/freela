@@ -17,6 +17,7 @@ Text Domain: palermo
 
 // Components
 @import 
+  '../components/Parts/ProjectListItem/styles',
   '../components/Parts/MobileMenu/styles',
   '../components/Parts/Button/styles',
   'components/_search',
@@ -41,6 +42,7 @@ Text Domain: palermo
 
 // Blocks & Heros
 @import 
+  '../components/Blocks/Projects/styles',
   '../components/Blocks/Testimonial/styles',
   '../components/Blocks/Media/styles',
   '../components/Blocks/ProjectDetail/styles',
