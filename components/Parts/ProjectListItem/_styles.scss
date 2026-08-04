@@ -1,58 +1,76 @@
-.ProjectListItem{
-  position: relative;  
-    --next-project-x: 0px;
-    --next-project-y: 0px;
-  a{
-    @include absolute;
-  }
-  h3{
-    color: $black;
-    font-size: rv(60px, 120px);
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-    line-height: .9;
-    text-align: center;
-  }
+.ProjectListItem {
+	position: relative;
+	isolation: isolate;
+	--next-project-x: 0px;
+	--next-project-y: 0px;
+	background: #f9f8ed;
+	&.active {
+		z-index: 1;
+		h3 {
+			opacity: 1;
+		}
+	}
+	a {
+		@include absolute;
+	}
+	h3 {
+		//color: $black;
+		font-size: rv(60px, 120px);
+		letter-spacing: -0.02em;
+		text-transform: uppercase;
+		line-height: 0.9;
+		text-align: center;
+		mix-blend-mode: difference;
+		position: relative;
+		z-index: 6;
+		opacity: 0.2;
+		font-weight: 500;
+		transition: 0.3s;
+	}
 
-  figure{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) translate(var(--next-project-x), calc(var(--next-project-y) * .4));
-    clip-path: inset(0 100% 0 0);
-    transition:
-        transform .6s cubic-bezier(.16, 1.35, .35, 1),
-        clip-path .55s cubic-bezier(.76, 0, .24, 1);
-    will-change: transform, clip-path;
-    mix-blend-mode: difference;
+	figure {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%)
+		translate(var(--next-project-x), calc(var(--next-project-y) * 0.4));
+		clip-path: inset(0 100% 0 0);
+		transition:
+		transform 0.6s cubic-bezier(0.16, 1.35, 0.35, 1),
+		clip-path 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+		will-change: transform, clip-path;
 
-    &.is-visible{
-        clip-path: inset(0 0 0 0);
-    }
+		z-index: 5;
+		pointer-events: none;
 
-    &.is-leaving{
-        clip-path: inset(0 0 0 100%);
-    }
+		&.is-visible {
+		clip-path: inset(0 0 0 0);
+		}
 
-    &.is-idle{
-        transition:
-            transform .65s cubic-bezier(.16, 1.35, .35, 1),
-            clip-path 0s;
-    }
+		&.is-leaving {
+		clip-path: inset(0 0 0 100%);
+		}
 
-    img, video{
-        aspect-ratio: 246/308;
-        border-radius: 24px;
-        display: block;
-        object-fit: cover;
-        max-width: 246px;
-    }
-}
-&.is-curtain-leaving{
-    figure{
-        transition:
-            transform 1.2s cubic-bezier(.16, 1, .3, 1),
-            clip-path .55s cubic-bezier(.76, 0, .24, 1);
-    }
-}
+		&.is-idle {
+		transition:
+			transform 0.65s cubic-bezier(0.16, 1.35, 0.35, 1),
+			clip-path 0s;
+		}
+
+		img,
+		video {
+		aspect-ratio: 246/308;
+		border-radius: 24px;
+		display: block;
+		object-fit: cover;
+		max-width: 246px;
+		}
+	}
+	&.is-curtain-leaving {
+		figure {
+		transition:
+			transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+			clip-path 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+		}
+	}
 }

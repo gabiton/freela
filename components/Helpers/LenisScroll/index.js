@@ -1,6 +1,30 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
+const DEFAULT_LENIS_SETTINGS = {
+  wheelMultiplier: 0.8,
+  duration: 2,
+};
+
+const ROUTE_LENIS_SETTINGS = [
+  {
+    match: (path) => path.startsWith("/projects"),
+    settings: {
+      wheelMultiplier: 0.5,
+      duration: 2,
+    },
+  },
+];
+
+const getLenisSettings = (path) => {
+  const routeSettings = ROUTE_LENIS_SETTINGS.find(({ match }) => match(path));
+
+  return {
+    ...DEFAULT_LENIS_SETTINGS,
+    ...(routeSettings?.settings || {}),
+  };
+};
+
 export const LenisScroll = () => {
   const router = useRouter();
 
@@ -39,10 +63,7 @@ export const LenisScroll = () => {
         return;
       }
 
-      lenis = new Lenis({
-        wheelMultiplier: 0.8,
-        duration: 2,
-      });
+      lenis = new Lenis(getLenisSettings(router.asPath));
 
       window.lenis = lenis;
 
@@ -67,7 +88,7 @@ export const LenisScroll = () => {
       lenis?.destroy();
       delete window.lenis;
     };
-  }, []);
+  }, [router.asPath]);
 
   useEffect(() => {
     const handleRouteChangeComplete = () => {
