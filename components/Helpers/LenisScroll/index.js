@@ -32,6 +32,7 @@ export const LenisScroll = () => {
     let isActive = true;
     let lenis;
     let animationFrame;
+    let resizeInterval;
     let hasWindowListeners = false;
 
     const raf = (time) => {
@@ -68,6 +69,9 @@ export const LenisScroll = () => {
       window.lenis = lenis;
 
       animationFrame = requestAnimationFrame(raf);
+      resizeInterval = setInterval(() => {
+        lenis?.resize();
+      }, 1000);
       window.addEventListener("mousedown", handleMouseDown);
       window.addEventListener("mouseup", handleMouseUp);
       hasWindowListeners = true;
@@ -78,6 +82,10 @@ export const LenisScroll = () => {
 
       if (animationFrame) {
         cancelAnimationFrame(animationFrame);
+      }
+
+      if (resizeInterval) {
+        clearInterval(resizeInterval);
       }
 
       if (hasWindowListeners) {
