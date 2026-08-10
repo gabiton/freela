@@ -2,11 +2,13 @@
     position: relative;
     height: 100dvh;
     overflow: hidden;
+    --projects-image-x: 0px;
+    --projects-image-y: 0px;
     //padding-top: calc(50dvh - 50px);
     //padding-bottom: calc(50dvh - 50px);
     //cursor: none;
     
-    .container{
+    &__list{
         position: absolute;
         top: 50%;
         left: 0;
@@ -19,6 +21,16 @@
         &.is-jumping{
             transition: none;
         }
+
+        &--base{
+            z-index: 0;
+        }
+
+        &--overlay{
+            z-index: 2;
+            pointer-events: none;
+            mix-blend-mode: difference;
+        }
     }
     .ProjectListItem{
         width: 100%;
@@ -26,6 +38,44 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    &__figureStage{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) translate(var(--projects-image-x), calc(var(--projects-image-y) * .4));
+        transition: transform .65s cubic-bezier(.16, 1.35, .35, 1);
+        will-change: transform;
+        z-index: 1;
+        pointer-events: none;
+        //mix-blend-mode: difference;
+
+        &__image{
+            aspect-ratio: 246/308;
+            border-radius: 24px;
+            display: block;
+            object-fit: cover;
+            max-width: 246px;
+
+            &.is-current{
+                position: relative;
+                z-index: 2;
+                clip-path: inset(0 0 0 0);
+                transition: clip-path .55s cubic-bezier(.76, 0, .24, 1);
+            }
+
+            &.is-previous{
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+            }
+        }
+
+        &.is-entering{
+            .Projects__figureStage__image.is-current{
+                animation: projects-image-curtain-in .55s cubic-bezier(.76, 0, .24, 1) both;
+            }
+        }
     }
     &:before, &:after{
         position: fixed;
@@ -42,6 +92,14 @@
         top: unset;
         bottom: 0;
         background: linear-gradient(to bottom, rgba(#F9F8ED, 0) 0%,  rgba(#F9F8ED, 100) 100%) ;
+    }
+}
+@keyframes projects-image-curtain-in{
+    from{
+        clip-path: inset(0 100% 0 0);
+    }
+    to{
+        clip-path: inset(0 0 0 0);
     }
 }
 body:has(.Projects){

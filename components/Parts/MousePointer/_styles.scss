@@ -1,0 +1,46 @@
+.MousePointer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: rgba($white, .8);
+	pointer-events: none;
+	opacity: 0;
+	transform: translate3d(var(--pointer-x, 0), var(--pointer-y, 0), 0) translate(-50%, -50%);
+	mix-blend-mode: difference;
+	transition:
+		width 0.25s,
+		height 0.25s,
+		opacity 0.2s;
+
+	&.is-visible {
+		opacity: 1;
+	}
+
+	&.is-link-hovered {
+		width: 40px;
+		height: 40px;
+		background: rgba($white, .3);
+
+		span {
+			clip-path: inset(0 0 0 0);
+		}
+	}
+
+	span {
+		position: absolute;
+		top: 50%;
+		left: 100%;
+		white-space: nowrap;
+		clip-path: inset(0 100% 0 0);
+		transform: translate(20px, -50%);
+		color: $white;
+		text-transform: uppercase;
+		font-weight: 500;
+		font-size: 14px;
+		transition: clip-path 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+	}
+}

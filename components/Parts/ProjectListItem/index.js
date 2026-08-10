@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { forwardRef, useEffect, useRef, useState } from "react";
 
@@ -10,10 +9,17 @@ const getProjectHref = (project) => {
     return slug ? `/project/${slug}` : project?.post_url || "#";
 };
 
-export const ProjectListItem = forwardRef(({ active = false, instant = false, project, style }, ref) => {
+export const ProjectListItem = forwardRef(({
+    active = false,
+    instant = false,
+    linkActive = false,
+    project,
+    showLink = true,
+    style,
+    variant = "base",
+}, ref) => {
     const curtainTimeoutRef = useRef(null);
     const [curtainState, setCurtainState] = useState("idle");
-    const image = project?.featured_image || project?.featuredImage;
 
     useEffect(() => {
         if (curtainTimeoutRef.current) {
@@ -58,22 +64,14 @@ export const ProjectListItem = forwardRef(({ active = false, instant = false, pr
 
     return (
         <div
-            className={`ProjectListItem is-curtain-${curtainState}${active ? " active" : ""}${instant ? " is-instant" : ""}`}
+            className={`ProjectListItem ProjectListItem--${variant} is-curtain-${curtainState}${active ? " active" : ""}${linkActive ? " is-link-active" : ""}${instant ? " is-instant" : ""}`}
             ref={ref}
             style={style}
         >
             <h3>{project.post_title || project.title}</h3>
-            {image?.url && (
-                <figure className={`is-${curtainState}`}>
-                    <Image
-                        src={image.url}
-                        width={image.width || 800}
-                        height={image.height || 600}
-                        alt={image.alt || project.post_title || project.title || ""}
-                    />
-                </figure>
+            {showLink && (
+                <Link href={getProjectHref(project)} aria-label={project.post_title || project.title}></Link>
             )}
-          <Link href={getProjectHref(project)} aria-label={project.post_title || project.title}></Link>
         </div>
     );
 });

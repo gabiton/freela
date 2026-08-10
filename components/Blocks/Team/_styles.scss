@@ -1,6 +1,6 @@
 .Team{
     position: relative;
-    overflow: hidden;
+    //overflow: hidden;
     margin-bottom: 280px;
     h2{
         font-size: 72px;
@@ -36,7 +36,7 @@
             z-index: 2;
         }
         &:before{
-            width: 100vw;
+            width: calc( 100vw - 15px );
             left: 50%;
             top: 0;
             height: 100%;
@@ -59,6 +59,7 @@
             border-radius: 24px;
             overflow: hidden;
             pointer-events: none;
+            max-width: 374px;
         }
         &:hover{
             color: $black;
