@@ -6,6 +6,8 @@ const DEFAULT_LENIS_SETTINGS = {
   duration: 2,
 };
 
+const LENIS_RESIZE_INTERVAL = 1000;
+
 const ROUTE_LENIS_SETTINGS = [
   {
     match: (path) => path.startsWith("/projects"),
@@ -70,8 +72,10 @@ export const LenisScroll = () => {
 
       animationFrame = requestAnimationFrame(raf);
       resizeInterval = setInterval(() => {
-        lenis?.resize();
-      }, 1000);
+        if (lenis && lenis.isScrolling === false && !lenis.isStopped) {
+          lenis.resize();
+        }
+      }, LENIS_RESIZE_INTERVAL);
       window.addEventListener("mousedown", handleMouseDown);
       window.addEventListener("mouseup", handleMouseUp);
       hasWindowListeners = true;

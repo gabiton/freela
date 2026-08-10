@@ -1,62 +1,113 @@
 import { ProjectListItem } from "@/components/Parts/ProjectListItem";
 import { useEffect, useRef, useState } from "react";
 
+const PROJECTS_SCROLL_COOLDOWN = 650;
+const PROJECTS_WHEEL_THRESHOLD = 20;
+const PROJECTS_ITEM_DISTANCE = 110;
+
+const wrapIndex = (index, length) => {
+  if (!length) {
+    return 0;
+  }
+
+  return ((index % length) + length) % length;
+};
+
 export const Projects = ({ data, style }) => {
   const projects = data.projects || [];
-  const itemRefs = useRef([]);
-  const [activeIndex, setActiveIndex] = useState(null);
-  const projectItems = [...projects, ...projects, ...projects];
+  const projectsRef = useRef(null);
+  const scrollLockRef = useRef(false);
+  const scrollLockTimeoutRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(projects.length);
+  const [isJumping, setIsJumping] = useState(false);
 
   useEffect(() => {
-    const updateActiveItem = () => {
-      const viewportCenter = window.innerHeight / 2;
-      let closestIndex = null;
-      let closestDistance = Infinity;
+    setActiveIndex(projects.length);
+  }, [projects.length]);
 
-      itemRefs.current.forEach((item, index) => {
-        if (!item) {
-          return;
-        }
+  useEffect(() => {
+    const projectsEl = projectsRef.current;
 
-        const rect = item.getBoundingClientRect();
-        const itemCenter = rect.top + rect.height / 2;
-        const distance = Math.abs(itemCenter - viewportCenter);
+    if (!projectsEl || projects.length <= 1) {
+      return;
+    }
 
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = index;
-        }
-      });
-
-      setActiveIndex(closestIndex);
+    const unlockScroll = () => {
+      scrollLockRef.current = false;
     };
 
-    updateActiveItem();
-    window.addEventListener("scroll", updateActiveItem, { passive: true });
-    window.addEventListener("resize", updateActiveItem);
+    const handleWheel = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (Math.abs(event.deltaY) < PROJECTS_WHEEL_THRESHOLD || scrollLockRef.current) {
+        return;
+      }
+
+      scrollLockRef.current = true;
+
+      setActiveIndex((currentIndex) => currentIndex + (event.deltaY > 0 ? 1 : -1));
+
+      if (scrollLockTimeoutRef.current) {
+        clearTimeout(scrollLockTimeoutRef.current);
+      }
+
+      scrollLockTimeoutRef.current = setTimeout(unlockScroll, PROJECTS_SCROLL_COOLDOWN);
+    };
+
+    projectsEl.addEventListener("wheel", handleWheel, { passive: false });
 
     return () => {
-      window.removeEventListener("scroll", updateActiveItem);
-      window.removeEventListener("resize", updateActiveItem);
+      projectsEl.removeEventListener("wheel", handleWheel);
+
+      if (scrollLockTimeoutRef.current) {
+        clearTimeout(scrollLockTimeoutRef.current);
+      }
     };
-  }, [projectItems.length]);
+  }, [projects.length]);
 
   if (!projects.length) {
     return null;
   }
+
+  const repeatedProjects = [...projects, ...projects, ...projects];
+  const activeProjectIndex = wrapIndex(activeIndex, projects.length);
+  const projectsOffset = activeIndex * PROJECTS_ITEM_DISTANCE + PROJECTS_ITEM_DISTANCE / 2;
+
+  const handleTransitionEnd = (event) => {
+    if (event.target !== event.currentTarget || projects.length <= 1) {
+      return;
+    }
+
+    if (activeIndex < projects.length || activeIndex >= projects.length * 2) {
+      setIsJumping(true);
+      setActiveIndex(projects.length + activeProjectIndex);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsJumping(false);
+        });
+      });
+    }
+  };
   
   return (
-    <div className={`Projects`} >
-      <div className="container">
+    <div className={`Projects`} data-lenis-prevent-wheel ref={projectsRef}>
+      <div
+        className={`container${isJumping ? " is-jumping" : ""}`}
+        onTransitionEnd={handleTransitionEnd}
+        style={{
+          "--projects-item-height": `${PROJECTS_ITEM_DISTANCE}px`,
+          "--projects-offset": `${projectsOffset}px`,
+        }}
+      >
 
-        {projectItems.map((project, index) => (
+        {repeatedProjects.map((project, index) => (
           <ProjectListItem
-            active={activeIndex === index}
+            active={index === activeIndex}
+            instant={isJumping}
             key={`${project.ID || project.id || project.slug || project.post_name}-${index}`}
             project={project}
-            ref={(item) => {
-              itemRefs.current[index] = item;
-            }}
           />
         ))}
 

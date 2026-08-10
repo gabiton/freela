@@ -10,6 +10,12 @@
 			opacity: 1;
 		}
 	}
+	&.is-instant {
+		h3,
+		figure {
+			transition: none;
+		}
+	}
 	a {
 		@include absolute;
 		z-index: 10;

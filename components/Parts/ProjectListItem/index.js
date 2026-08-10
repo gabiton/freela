@@ -10,7 +10,7 @@ const getProjectHref = (project) => {
     return slug ? `/project/${slug}` : project?.post_url || "#";
 };
 
-export const ProjectListItem = forwardRef(({ active = false, project }, ref) => {
+export const ProjectListItem = forwardRef(({ active = false, instant = false, project, style }, ref) => {
     const curtainTimeoutRef = useRef(null);
     const [curtainState, setCurtainState] = useState("idle");
     const image = project?.featured_image || project?.featuredImage;
@@ -19,6 +19,11 @@ export const ProjectListItem = forwardRef(({ active = false, project }, ref) => 
         if (curtainTimeoutRef.current) {
             clearTimeout(curtainTimeoutRef.current);
             curtainTimeoutRef.current = null;
+        }
+
+        if (instant) {
+            setCurtainState(active ? "visible" : "idle");
+            return;
         }
 
         if (active) {
@@ -37,7 +42,7 @@ export const ProjectListItem = forwardRef(({ active = false, project }, ref) => 
 
             return "leaving";
         });
-    }, [active]);
+    }, [active, instant]);
 
     useEffect(() => {
         return () => {
@@ -53,8 +58,9 @@ export const ProjectListItem = forwardRef(({ active = false, project }, ref) => 
 
     return (
         <div
-            className={`ProjectListItem is-curtain-${curtainState}${active ? " active" : ""}`}
+            className={`ProjectListItem is-curtain-${curtainState}${active ? " active" : ""}${instant ? " is-instant" : ""}`}
             ref={ref}
+            style={style}
         >
             <h3>{project.post_title || project.title}</h3>
             {image?.url && (

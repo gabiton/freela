@@ -1,15 +1,31 @@
 .Projects{    
-    padding-top: 200px;
     position: relative;
-    min-height: 100dvh;
-    padding-top: calc(50dvh - 50px);
-    padding-bottom: calc(50dvh - 50px);
+    height: 100dvh;
+    overflow: hidden;
+    //padding-top: calc(50dvh - 50px);
+    //padding-bottom: calc(50dvh - 50px);
     //cursor: none;
     
     .container{
-        gap: 10px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
         display: flex;
         flex-direction: column;
+        transform: translateY(calc(var(--projects-offset, 0px) * -1));
+        transition: transform .65s cubic-bezier(.16, 1, .3, 1);
+
+        &.is-jumping{
+            transition: none;
+        }
+    }
+    .ProjectListItem{
+        width: 100%;
+        flex: 0 0 var(--projects-item-height, 110px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     &:before, &:after{
         position: fixed;
@@ -30,4 +46,5 @@
 }
 body:has(.Projects){
     background: #F9F8ED;
+    overflow: hidden;
 }
