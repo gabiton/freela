@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const POINTER_EASE = 0.16;
+const POINTER_PRECISION = 100;
+
+const roundPointerValue = (value) =>
+  Math.round(value * POINTER_PRECISION) / POINTER_PRECISION;
 
 export const MousePointer = () => {
   const pointerRef = useRef(null);
@@ -18,8 +22,14 @@ export const MousePointer = () => {
       positionRef.current.y += (targetRef.current.y - positionRef.current.y) * POINTER_EASE;
 
       if (pointer) {
-        pointer.style.setProperty("--pointer-x", `${positionRef.current.x}px`);
-        pointer.style.setProperty("--pointer-y", `${positionRef.current.y}px`);
+        pointer.style.setProperty(
+          "--pointer-x",
+          `${roundPointerValue(positionRef.current.x)}px`,
+        );
+        pointer.style.setProperty(
+          "--pointer-y",
+          `${roundPointerValue(positionRef.current.y)}px`,
+        );
       }
 
       animationFrameRef.current = requestAnimationFrame(updatePointer);

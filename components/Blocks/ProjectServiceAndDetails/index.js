@@ -54,7 +54,13 @@ export const ProjectServiceAndDetails = ({ data, style }) => {
 							{item.label}
 						</div>
 						<div className="text">
-							{item.value}
+							{item.url ? (
+								<a href={item.url} target="_blank" rel="noreferrer">
+									{item.value}{" "}↗
+								</a>
+							) : (
+								item.value
+							)}
 						</div>
 					</div>
 				))}
