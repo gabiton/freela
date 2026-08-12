@@ -6,6 +6,7 @@
     &__video{
         position: relative;
         overflow: hidden;
+        aspect-ratio: 16/10;
         iframe {
             position: absolute;
             top: 50%;
