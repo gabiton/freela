@@ -28,10 +28,17 @@
         text-align: center;
         line-height: (100/120);
     }
-    video{
+    
+    &__figure{
         margin-top: 80px;
         width: 100%;
         height: auto;
+        video, embed, iframe{
+            aspect-ratio: 16/10;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
     }
     .cat{
         text-align: right;

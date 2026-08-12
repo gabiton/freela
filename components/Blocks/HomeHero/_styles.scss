@@ -1,5 +1,10 @@
 .home-hero{
 	padding-bottom: 616px;
+	position: relative;
+	.container{
+		position: relative;
+		z-index: 1;
+	}
     h1{
 		padding-top: 410px; 
 		font-size: 120px;
@@ -50,5 +55,30 @@
 		white-space: nowrap;
 		padding-top: 10px;
 		box-sizing: border-box;
+	}
+	&__video{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		&:before, &:after{
+			content: '';
+			position: absolute;
+			height: 30%;
+			width: 100%;
+			background: linear-gradient(to bottom, rgba($black, 1) 0%, rgba($black, 0) 100%);
+			top: 0;
+			left: 0;
+		}
+		&:after{
+			top: unset;
+			bottom: 0;
+			background: linear-gradient(to bottom, rgba($black, 0) 0%, rgba($black, 1) 100%);
+		}
+		
+		iframe{
+			aspect-ratio: 16/10;
+			width: 100%;
+		}
 	}
 }
