@@ -1,0 +1,65 @@
+.ProjectServiceAndDetails{
+    margin-bottom: 260px;
+    &__headers{
+        display: flex;
+        padding: 20px 0;
+        position: relative;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 500;
+        color: $lgrey;
+        margin-bottom: 40px;
+        max-width: 1266px;
+        margin-left: auto;
+        &:after{
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 1px;
+			background: $dgrey;
+			content: '';
+		}
+    }
+    .col:nth-child(1){
+        width: 50%;
+    }
+    .col:nth-child(2){
+        width: 50%;
+    }
+    &__content{
+        display: flex;
+        position: relative;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 500;
+        color: $white;
+        margin-bottom: 40px;
+        max-width: 1266px;
+        margin-left: auto;
+        span{
+            color: $lgrey;
+        }
+        .col{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .row.overview{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            position: relative;
+            &:after{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: $dgrey;
+                content: '';
+            }
+        }
+    }
+}

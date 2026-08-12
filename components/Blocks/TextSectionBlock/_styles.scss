@@ -20,10 +20,10 @@
 	}
 	h2{
 		font-size: 72px;
-		line-height: 80/72;
+		line-height: (80 / 72);
 		font-weight: 500;
 		margin-bottom: 240px;
-		max-width: 887px;
+		//max-width: 887px;
 	}
 	&__text{
 		font-size: 42px;
