@@ -66,7 +66,7 @@ export const Project = (props) => {
           )}
           {!vimeoHeroEmbedUrl && !props.postData.hero_video && props.postData.hero_image && (
             <Image
-              src={props.postData.hero_image}
+              src={props.postData.hero_image.url}
               width={1920}
               height={1080}
               alt={props.title || ""}
