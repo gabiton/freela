@@ -64,9 +64,9 @@ export const Project = (props) => {
           {!vimeoHeroEmbedUrl && props.postData.hero_video && (
             <video src={props.postData.hero_video.url} autoPlay muted loop />
           )}
-          {!vimeoHeroEmbedUrl && !props.postData.hero_video && props.featuredImage && (
+          {!vimeoHeroEmbedUrl && !props.postData.hero_video && props.postData.hero_image && (
             <Image
-              src={props.featuredImage}
+              src={props.postData.hero_image}
               width={1920}
               height={1080}
               alt={props.title || ""}
